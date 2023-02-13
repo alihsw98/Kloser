@@ -1,0 +1,20 @@
+{
+    "home":"الصفحة الرئيسية",
+    "create_account":"انشاء حساب",
+    "log_in":"تسجيل الدخول",
+    "full_name":"الاسم الكامل",
+    "enter_full_name":"ادخل الاسم الكامل",
+    "user_name":"اسم المستخدم",
+    "enter_user_name":"ادخل اسم المستخدم",
+    "password":"كلمة المرور",
+    "entet_password":"ادخل كلمة المرور",
+    "already_have_an_account":"هل لديك حساب ؟",
+    "dont_have_an_account":"ليس لديك حساب؟",
+    "register_success":"تم التسجيل بنجاح",
+    "field_must_not_be_empty": "يجب ان لا يكون الحقل فارغ",
+    "loading": "جاري التحميل",
+    "save_info": "حفظ المعلومات"
+    
+
+
+}
