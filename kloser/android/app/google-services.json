@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "97744760548",
+    "project_id": "kloser-7aa4c",
+    "storage_bucket": "kloser-7aa4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97744760548:android:5d272d8fcf9dd2f5ca86f1",
+        "android_client_info": {
+          "package_name": "com.example.kloser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97744760548-36g97cr8aolpp0qqf81sg78t8rvsnnjl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjpRNPI67-r6E0liI9fCXPPCX_tzdPc7A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97744760548-36g97cr8aolpp0qqf81sg78t8rvsnnjl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
