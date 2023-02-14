@@ -2,18 +2,26 @@
     "home":"الصفحة الرئيسية",
     "create_account":"انشاء حساب",
     "log_in":"تسجيل الدخول",
-    "full_name":"الاسم الكامل",
-    "enter_full_name":"ادخل الاسم الكامل",
-    "user_name":"اسم المستخدم",
-    "enter_user_name":"ادخل اسم المستخدم",
+    "full_name":"* الاسم الكامل",
+    "enter_full_name":"* ادخل الاسم الكامل",
+    "user_name":"* اسم المستخدم",
+    "enter_user_name":"* ادخل اسم المستخدم",
     "password":"كلمة المرور",
-    "entet_password":"ادخل كلمة المرور",
+    "enter_password":"ادخل كلمة المرور",
     "already_have_an_account":"هل لديك حساب ؟",
     "dont_have_an_account":"ليس لديك حساب؟",
     "register_success":"تم التسجيل بنجاح",
     "field_must_not_be_empty": "يجب ان لا يكون الحقل فارغ",
     "loading": "جاري التحميل",
-    "save_info": "حفظ المعلومات"
+    "save_info": "حفظ المعلومات",
+    "email":"البريد الالكتروني",
+    "enter_email":"ادخل البريد الالكتروني",
+    "enter_a_valid_email":"ادخل بريد الكتروني صالح",
+    "short_password":"ادخل كلمة مرور مكونة من 5 حروف على الاقل",
+    "profile":"الملف الشخصي",
+    "bio":"السيرة الذاتية",
+    "enter_bio":"ادخل سيرتك الذاتية",
+    "complete_your_profile":"اكمل ملفك الشخصي"
     
 
 

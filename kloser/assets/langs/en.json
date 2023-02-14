@@ -2,10 +2,10 @@
     "home":"Home",
     "create_account" : "Create Account",
     "log_in":"Log in",
-    "full_name":"Full Name",
-    "enter_full_name":"Enter Full Name",
-    "user_name":"UserName",
-    "enter_user_name":"Enter UserName",
+    "full_name":"Full Name *",
+    "enter_full_name":"Enter Full Name *",
+    "user_name":"UserName *",
+    "enter_user_name":"Enter UserName *",
     "password":"Password",
     "enter_password":"Enter Password",
     "already_have_an_account":"Already have an account ?",
@@ -13,6 +13,14 @@
     "register_success":"Register success",
     "field_must_not_be_empty": "Field must not be empty",
     "loading": "Loading",
-    "save_info": "Save info"
+    "save_info": "Save info",
+    "email":"Email",
+    "enter_email":"Enter email",
+    "enter_a_valid_email":"Enter a valid email",
+    "short_password":"Enter a password of at least 5 characters",
+    "profile":"Profile",
+    "bio":"Bio",
+    "enter_bio":"Enter your bio",
+    "complete_your_profile":"Complete your profile"
 
 }
