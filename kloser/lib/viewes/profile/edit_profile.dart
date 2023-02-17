@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kloser/settings/color.dart';
 import 'package:kloser/settings/locale/app_localizations.dart';
+import 'package:kloser/viewes/home/home_page.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -50,6 +51,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             return AppLocale.of(context)!
                                 .translate("field_must_not_be_empty");
                           }
+                          return null;
                         },
                       ),
                       const SizedBox(
@@ -67,6 +69,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             return AppLocale.of(context)!
                                 .translate("field_must_not_be_empty");
                           }
+                          return null;
                         },
                       ),
                     ],
@@ -137,11 +140,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     if (_formKey.currentState!.validate()) {
                       if (_formKey.currentState!.validate()) {
                         addUser();
-                        // // ignore: use_build_context_synchronously
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) {
-                        //   return const EditProfilePage();
-                        // }));
+                        // ignore: use_build_context_synchronously
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const HomePage();
+                        }));
                       }
                     }
                   },

@@ -1,10 +1,7 @@
-import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kloser/settings/locale/app_localizations.dart';
 import 'package:kloser/viewes/auth/login.dart';
-import 'package:kloser/viewes/home/home_page.dart';
 import 'package:kloser/viewes/profile/edit_profile.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -56,6 +53,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   return AppLocale.of(context)!
                       .translate("enter_a_valid_email");
                 }
+                return null;
               },
             ),
             const SizedBox(
@@ -75,6 +73,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 if (value.length < 5) {
                   return AppLocale.of(context)!.translate("short_password");
                 }
+                return null;
               },
             ),
             const SizedBox(

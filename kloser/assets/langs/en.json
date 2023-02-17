@@ -1,5 +1,5 @@
 {
-    "home":"Home",
+    "home":"Home Page",
     "create_account" : "Create Account",
     "log_in":"Log in",
     "full_name":"Full Name *",
@@ -21,6 +21,7 @@
     "profile":"Profile",
     "bio":"Bio",
     "enter_bio":"Enter your bio",
-    "complete_your_profile":"Complete your profile"
+    "complete_your_profile":"Complete your profile",
+    "log_out":"LogOut"
 
 }

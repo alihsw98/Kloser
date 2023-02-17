@@ -1,11 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:kloser/settings/color.dart';
 import 'package:kloser/settings/locale/app_localizations.dart';
-import 'package:kloser/viewes/auth/signup.dart';
+import 'package:kloser/viewes/auth/login.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:kloser/viewes/profile/edit_profile.dart';
+import 'package:kloser/viewes/home/home_page.dart';
+import 'package:kloser/viewes/profile/profile.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,11 +29,15 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Kloser',
       theme: appTheme,
+      routes: {
+        '/sign_in': (context) => const LoginPage(),
+        '/home_page': ((context) => const HomePage())
+      },
       supportedLocales: const [
         Locale('en', ''),
         Locale('ar', ''),
       ],
-      locale: const Locale("ar"),
+      locale: const Locale("en"),
       localizationsDelegates: const [
         AppLocale.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -47,9 +53,18 @@ class _MyAppState extends State<MyApp> {
         return supportedLocales.first;
       },
       home: const Scaffold(
-        body: EditProfilePage(),
+        body: ProfilePage(),
+        //isuserloggedin(),
       ),
     );
+  }
+}
+
+Widget isuserloggedin() {
+  if (FirebaseAuth.instance.currentUser != null) {
+    return const HomePage();
+  } else {
+    return const LoginPage();
   }
 }
 
