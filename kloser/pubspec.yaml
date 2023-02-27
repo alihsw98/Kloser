@@ -3,7 +3,7 @@ description: Social Media App.
 
 publish_to: 'Ali Haider' 
 
-version: 1.0.0+1
+version: 1.0.0+3
 
 environment:
   sdk: '>=2.18.5 <3.0.0'

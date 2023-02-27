@@ -165,7 +165,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       isLoading = true;
       isImageUploadComplete = false;
     });
-    XFile? image = await ImagePicker().pickImage(source: ImageSource.camera);
+    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
       _image = File(image!.path);
     });

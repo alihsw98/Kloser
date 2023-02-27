@@ -190,7 +190,7 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
       isLoading = true;
       isImageUploadComplete = false;
     });
-    XFile? image = await ImagePicker().pickImage(source: ImageSource.camera);
+    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
       _image = File(image!.path);
     });

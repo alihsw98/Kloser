@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kloser/viewes/auth/signup.dart';
@@ -17,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  bool _passwordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,18 @@ class _LoginPageState extends State<LoginPage> {
             ),
             TextFormField(
               controller: password,
+              obscureText: !_passwordVisible,
               decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                    icon: Icon(_passwordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off),
+                    onPressed: () {
+                      setState(() {
+                        _passwordVisible = !_passwordVisible;
+                      });
+                    },
+                  ),
                   hintText: "${AppLocale.of(context)!.translate("password")}",
                   labelText:
                       "${AppLocale.of(context)!.translate("enter_password")}"),
@@ -95,8 +108,30 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.pushNamed(context, '/home_page');
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
+                          AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.error,
+                            animType: AnimType.rightSlide,
+                            title:
+                                '${AppLocale.of(context)!.translate("error")}',
+                            desc:
+                                '${AppLocale.of(context)!.translate("No user found for that email.")}',
+                            btnCancelOnPress: () {},
+                            btnOkOnPress: () {},
+                          ).show();
                           debugPrint('No user found for that email.');
                         } else if (e.code == 'wrong-password') {
+                          AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.error,
+                            animType: AnimType.rightSlide,
+                            title:
+                                '${AppLocale.of(context)!.translate("error")}',
+                            desc:
+                                '${AppLocale.of(context)!.translate("'Wrong password provided for that user.'")}',
+                            btnCancelOnPress: () {},
+                            btnOkOnPress: () {},
+                          ).show();
                           debugPrint('Wrong password provided for that user.');
                         }
                       }

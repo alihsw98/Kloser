@@ -17,6 +17,7 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
+  bool _passwordVisible = false;
   UserCredential? _user;
 
   @override
@@ -68,7 +69,18 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               TextFormField(
                 controller: password,
+                obscureText: !_passwordVisible,
                 decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      icon: Icon(_passwordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          _passwordVisible = !_passwordVisible;
+                        });
+                      },
+                    ),
                     hintText: "${AppLocale.of(context)!.translate("password")}",
                     labelText:
                         "${AppLocale.of(context)!.translate("enter_password")}"),
