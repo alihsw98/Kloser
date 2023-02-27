@@ -7,30 +7,28 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kloser/settings/color.dart';
 import 'package:kloser/settings/locale/app_localizations.dart';
-import 'package:kloser/viewes/profile/profile.dart';
+import 'package:kloser/viewes/home/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({super.key});
+class CompleteProfilePage extends StatefulWidget {
+  const CompleteProfilePage({super.key});
 
   @override
-  State<EditProfilePage> createState() => _EditProfilePageState();
+  State<CompleteProfilePage> createState() => _CompleteProfilePageState();
 }
 
-class _EditProfilePageState extends State<EditProfilePage> {
+class _CompleteProfilePageState extends State<CompleteProfilePage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController fullName = TextEditingController();
   TextEditingController userName = TextEditingController();
   TextEditingController bio = TextEditingController();
   File? _image;
-  String? _url;
-
+  String? _url = "";
   bool isLoading = false;
   bool isImageUploadComplete = true;
 
   @override
   void initState() {
-    getUserData();
     super.initState();
   }
 
@@ -39,11 +37,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return Scaffold(
       // backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        title: Text("${AppLocale.of(context)!.translate("edit_profile")}"),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.pop(context),
-        ),
+        title: Text(
+            "${AppLocale.of(context)!.translate("complete_your_profile")}"),
+        automaticallyImplyLeading: false,
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -104,10 +100,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             backgroundImage:
                                 _image == null ? null : FileImage(_image!),
                             child: IconButton(
-                              onPressed: uploadImage,
+                              onPressed: () {
+                                uploadImage();
+                              },
                               icon: const Icon(
                                 CupertinoIcons.cloud_upload_fill,
-                                color: AppColors.primaryColor,
+                                color: AppColors.backgroundColor,
                               ),
                             ),
                           ),
@@ -140,24 +138,51 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             if (_formKey.currentState!.validate()) {
-                              await updateUser();
+                              await addUser();
                               if (isImageUploadComplete) {
                                 // ignore: use_build_context_synchronously
-                                Navigator.push(context,
+                                Navigator.pushAndRemoveUntil(context,
                                     MaterialPageRoute(builder: (context) {
-                                  return const ProfilePage();
-                                }));
+                                  return const HomePage();
+                                }), (route) => false);
                               }
                             }
                           }
                         },
                         child: Text(
-                            "${AppLocale.of(context)!.translate("edit_profile")}")),
+                            "${AppLocale.of(context)!.translate("create_account")}")),
                   ),
                 ],
               ),
             ),
     );
+  }
+
+  Future<void> addUser() async {
+    setState(() {
+      isLoading = true;
+    });
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    Map<String, dynamic> data = {
+      'id': FirebaseAuth.instance.currentUser!.uid.toString(),
+      'full_name': fullName.text,
+      'username': userName.text,
+      'bio': bio.text,
+      'profile_image_url': _url
+    };
+    return users
+        .doc(FirebaseAuth.instance.currentUser!.uid.toString())
+        .set(data)
+        .then((vlue) async {
+      debugPrint("User Added");
+      setState(() {
+        isLoading = false;
+      });
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(
+          'uuid', FirebaseAuth.instance.currentUser!.uid.toString());
+      // ignore: invalid_return_type_for_catch_error
+    }).catchError((error) => debugPrint("Failed to add user: $error"));
   }
 
   uploadImage() async {
@@ -190,43 +215,5 @@ class _EditProfilePageState extends State<EditProfilePage> {
         debugPrint(e.toString());
       }
     }
-  }
-
-  Future<void> updateUser() async {
-    setState(() {
-      isLoading = true;
-    });
-    final prefs = await SharedPreferences.getInstance();
-    final String? uid = prefs.getString('uuid');
-
-    DocumentReference doc =
-        FirebaseFirestore.instance.collection('users').doc(uid);
-    await doc.update({
-      'id': FirebaseAuth.instance.currentUser!.uid.toString(),
-      'full_name': fullName.text,
-      'username': userName.text,
-      'bio': bio.text,
-      'profile_image_url': _url
-    }).then((value) {
-      setState(() {
-        isLoading = false;
-      });
-    });
-  }
-
-  Future<void> getUserData() async {
-    final prefs = await SharedPreferences.getInstance();
-    final String? uid = prefs.getString('uuid');
-
-    DocumentReference doc =
-        FirebaseFirestore.instance.collection('users').doc(uid);
-    var data = await doc.get();
-    setState(() {
-      fullName.text = data["full_name"];
-      userName.text = data["username"];
-      bio.text = data["bio"];
-      _url = data["profile_image_url"];
-      isLoading = false;
-    });
   }
 }

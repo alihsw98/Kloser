@@ -87,6 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       try {
+                        // ignore: unused_local_variable
                         UserCredential userCredential = await FirebaseAuth
                             .instance
                             .signInWithEmailAndPassword(

@@ -22,6 +22,12 @@
     "bio":"Bio",
     "enter_bio":"Enter your bio",
     "complete_your_profile":"Complete your profile",
-    "log_out":"LogOut"
+    "log_out":"LogOut",
+    "phone_number":"Phone number",
+    "enter_phone_number":"Enter phone number",
+    "weak_password":"The password provided is too weak.",
+    "error":"Error",
+    "email_already_exists":"The account already exists for that email.",
+    "edit_profile":"Edit Profile"
 
 }

@@ -7,7 +7,6 @@ import 'package:kloser/viewes/auth/login.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:kloser/viewes/home/home_page.dart';
-import 'package:kloser/viewes/profile/profile.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +16,6 @@ void main() async {
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -37,7 +35,7 @@ class _MyAppState extends State<MyApp> {
         Locale('en', ''),
         Locale('ar', ''),
       ],
-      locale: const Locale("en"),
+      locale: const Locale("ean"),
       localizationsDelegates: const [
         AppLocale.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -52,10 +50,7 @@ class _MyAppState extends State<MyApp> {
         }
         return supportedLocales.first;
       },
-      home: const Scaffold(
-        body: ProfilePage(),
-        //isuserloggedin(),
-      ),
+      home: Scaffold(body: isuserloggedin()),
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kloser/settings/locale/app_localizations.dart';
+import 'package:kloser/viewes/profile/profile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,16 +26,20 @@ class _HomePageState extends State<HomePage> {
               child: Text('Drawer Header'),
             ),
             ListTile(
-              title: const Text('Item 1'),
+              title: Text("${AppLocale.of(context)!.translate("profile")}"),
               onTap: () {
-                // Update the state of the app.
-                // ...
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const ProfilePage();
+                }));
               },
             ),
             ListTile(
               title: Text('${AppLocale.of(context)!.translate("log_out")}'),
-              onTap: () {
+              onTap: () async {
                 _signOut();
+                final prefs = await SharedPreferences.getInstance();
+                await prefs.remove('uuid');
+                // ignore: use_build_context_synchronously
                 Navigator.pushNamed(context, '/sign_in');
               },
             )
