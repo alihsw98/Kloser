@@ -6,6 +6,7 @@ import 'package:kloser/settings/locale/app_localizations.dart';
 import 'package:kloser/viewes/auth/login.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:kloser/viewes/chat/chat_page.dart';
 import 'package:kloser/viewes/home/home_page.dart';
 
 void main() async {
@@ -50,7 +51,12 @@ class _MyAppState extends State<MyApp> {
         }
         return supportedLocales.first;
       },
-      home: Scaffold(body: isuserloggedin()),
+      home: Scaffold(
+          body: Chatpage(
+        email: "test@gmail.com",
+      )
+          //isuserloggedin()
+          ),
     );
   }
 }

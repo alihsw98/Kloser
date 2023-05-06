@@ -28,6 +28,7 @@
     "weak_password":"The password provided is too weak.",
     "error":"Error",
     "email_already_exists":"The account already exists for that email.",
-    "edit_profile":"Edit Profile"
+    "edit_profile":"Edit Profile",
+    "message":"Message"
 
 }
